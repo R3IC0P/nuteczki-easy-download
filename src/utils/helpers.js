@@ -37,6 +37,7 @@ function prepareButtons() {
 
 function getStatus() {
   return Number(localStorage.getItem('NED_STATUS'))
+  // TODO: browser.storage.local.set(contentToStore)
 }
 
 function setStatus(statusCode = 0) {
@@ -45,6 +46,7 @@ function setStatus(statusCode = 0) {
 
 function handleBtnClick(btn) {
   const url = btn.getAttribute('data-ned-href')
+  setStatus(1)
   new Toast({ message: 'Rozpoczęto pobieranie' })
   markAsDownloaded(url)
   window.open(url)
