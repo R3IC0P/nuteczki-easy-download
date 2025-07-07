@@ -8,7 +8,7 @@ class Toast {
   #remainingTime
   #startTime
 
-  constructor({ message = 'Nuteczki Easy Download', duration = 5000 } = {}) {
+  constructor({ message = 'Nuteczki Easy Download', duration = 2500 } = {}) {
     this.#message = message
     this.#remainingTime = duration
 
@@ -78,7 +78,7 @@ class Toast {
   #pause() {
     clearTimeout(this.#timeout)
     const elapsed = Date.now() - this.#startTime
-    console.log(elapsed)
+    // console.log(elapsed)
     this.#remainingTime -= elapsed
     this.#progressBar.pause()
   }
