@@ -30,6 +30,10 @@ body {
   box-shadow: 0px 0px 4px gray;
 }
 
+.main {
+  padding: 12px;
+}
+
 .ned-logo {
   --ned-logo-size: 20px;
   position: relative;
