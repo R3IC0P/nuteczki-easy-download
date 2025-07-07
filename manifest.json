@@ -14,15 +14,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://nuteczki.top/*", "*://krakenfiles.com/view/*"],
+      "matches": ["*://m1.nuteczki.top/*", "*://krakenfiles.com/view/*"],
       "js": ["dist/content.bundle.js"]
     }
   ],
   "browser_action": {
     "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
     },
     "default_title": "Nuteczki Easy Download",
     "default_popup": "popup.html"
