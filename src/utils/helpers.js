@@ -1,7 +1,15 @@
 import { Button } from '../components/Button'
-import Toast from '../components/Toast'
+import Toast, { toast } from '../components/Toast'
+
+function deleteExistingButtons() {
+  const existingButtons = document.querySelectorAll('.ned-js-download-btn')
+  existingButtons.forEach((button) => button.remove())
+  toast('Usunięto stare przyciski')
+}
 
 export function prepareButtons() {
+  deleteExistingButtons()
+
   const btns = document.querySelectorAll('.music-btn a.btn.btn-sm.btn-success')
 
   if (btns.length === 0) return
