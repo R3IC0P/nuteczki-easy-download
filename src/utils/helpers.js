@@ -25,8 +25,32 @@ export function prepareButtons() {
   })
 }
 
-export function handleBtnClick(btn) {
+export async function handleBtnClick(btn) {
+  const { success } = await setInProgress(true)
+  if (!success) return
   const url = btn.getAttribute('data-ned-href')
   new Toast({ message: 'Rozpoczęto pobieranie', duration: 5000 })
   window.open(url)
+}
+
+export async function setInProgress(isInProgress) {
+  try {
+    await browser.storage.local.set({ NED_IS_IN_PROGRESS: isInProgress })
+    return { success: true }
+  } catch (err) {
+    console.log('Błąd przy zapisie stanu operacji: ', err)
+    toast('Upss... Hiuston mamy problem! Spróbuj ponownie.')
+    return { success: false, error: err }
+  }
+}
+
+export async function getInProgress() {
+  try {
+    const result = await browser.storage.local.get('NED_IS_IN_PROGRESS')
+    return { success: true, isInProgress: result.NED_IS_IN_PROGRESS === true }
+  } catch (err) {
+    console.log('Błąd przy odczycie aktualnego stanu: ', err)
+    toast('Upss... Hiuston mamy problem! Może jescze raz?')
+    return { success: false, error: err }
+  }
 }
