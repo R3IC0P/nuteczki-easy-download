@@ -110,4 +110,9 @@ class Toast {
   }
 }
 
+function toast(message, duration) {
+  return new Toast({ message, duration })
+}
+
 export default Toast
+export { toast }
