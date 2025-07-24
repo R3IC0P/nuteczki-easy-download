@@ -1,8 +1,6 @@
 import './styles/global.css'
-import Toast, { toast } from './components/Toast'
+import { toast } from './components/Toast'
 import { getInProgress, prepareButtons, setInProgress } from './utils/helpers'
-
-Toast.showWelcomeMessage()
 
 const { hostname, pathname } = window.location
 const pathnameLength = pathname.split('/').filter((e) => e !== '').length

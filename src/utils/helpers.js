@@ -1,5 +1,5 @@
 import { Button } from '../components/Button'
-import Toast, { toast } from '../components/Toast'
+import { toast } from '../components/Toast'
 
 function deleteExistingButtons() {
   const existingButtons = document.querySelectorAll('.ned-js-download-btn')
