@@ -1,5 +1,5 @@
 import './styles/global.css'
-import Toast from './components/Toast'
+import Toast, { toast } from './components/Toast'
 import { getInProgress, prepareButtons, setInProgress } from './utils/helpers'
 
 Toast.showWelcomeMessage()
@@ -29,9 +29,7 @@ if (hostname === 'krakenfiles.com') {
 if (hostname === 'm1.nuteczki.top') {
   if (pathnameLength === 2) {
     prepareButtons()
-    new Toast({
-      message: 'Dodano przyciski do szybkiego pobierania',
-    })
+    toast('Dodano przyciski do szybkiego pobierania')
   } else if (pathnameLength === 3) {
     const { success, isInProgress } = await getInProgress()
     if (success && isInProgress) {

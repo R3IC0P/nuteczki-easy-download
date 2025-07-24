@@ -29,7 +29,7 @@ export async function handleBtnClick(btn) {
   const { success } = await setInProgress(true)
   if (!success) return
   const url = btn.getAttribute('data-ned-href')
-  new Toast({ message: 'Rozpoczęto pobieranie', duration: 5000 })
+  toast('Rozpoczęto pobieranie', 5000)
   window.open(url)
 }
 
