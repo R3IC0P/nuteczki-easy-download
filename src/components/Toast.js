@@ -78,7 +78,6 @@ class Toast {
   #pause() {
     clearTimeout(this.#timeout)
     const elapsed = Date.now() - this.#startTime
-    // console.log(elapsed)
     this.#remainingTime -= elapsed
     this.#progressBar.pause()
   }
@@ -88,26 +87,11 @@ class Toast {
     this.#timeout = setTimeout(this.#hide, this.#remainingTime)
     this.#progressBar.play()
   }
+}
 
-  static showWelcomeMessage() {
-    const isFirstTime = localStorage.getItem('nedWelcomeShown') === null
-    if (isFirstTime) {
-      new Notification({
-        message:
-          'Witaj w Nuteczki Easy Download! Teraz możesz łatwo pobierać swoje ulubione utwory.',
-        duration: 7000,
-      })
-      localStorage.setItem('nedWelcomeShown', 'true')
-    }
-  }
-
-  static showDownloadStart(message) {
-    new Notification({ message: `Pobieranie: ${message}` })
-  }
-
-  static showDownloadComplete() {
-    new Notification({ message: 'Pobieranie zakończone!' })
-  }
+function toast(message, duration) {
+  return new Toast({ message, duration })
 }
 
 export default Toast
+export { toast }
