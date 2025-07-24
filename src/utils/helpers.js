@@ -1,8 +1,7 @@
 import { Button } from '../components/Button'
 import Toast from '../components/Toast'
-import { defaltUserData } from './constants'
 
-function prepareButtons() {
+export function prepareButtons() {
   const btns = document.querySelectorAll('.music-btn a.btn.btn-sm.btn-success')
 
   if (btns.length === 0) return
@@ -18,35 +17,8 @@ function prepareButtons() {
   })
 }
 
-function getStatus() {
-  return Number(localStorage.getItem('NED_STATUS'))
-  // TODO: browser.storage.local.set(contentToStore)
-}
-
-function setStatus(statusCode = 0) {
-  localStorage.setItem('NED_STATUS', statusCode)
-}
-
-function handleBtnClick(btn) {
+export function handleBtnClick(btn) {
   const url = btn.getAttribute('data-ned-href')
-  setStatus(1)
-  new Toast({ message: 'Rozpoczęto pobieranie' })
-  markAsDownloaded(url)
+  new Toast({ message: 'Rozpoczęto pobieranie', duration: 5000 })
   window.open(url)
 }
-
-function markAsDownloaded(url) {
-  const data = JSON.parse(localStorage.getItem('NED_USERDATA'))
-  data.song.downloaded.push(url)
-  localStorage.setItem('NED_USERDATA', JSON.stringify(data))
-}
-
-function getUserData() {
-  if (localStorage.getItem('NED_USERDATA') === null) {
-    localStorage.setItem('NED_USERDATA', JSON.stringify(defaltUserData))
-  }
-  const data = localStorage.getItem('NED_USERDATA')
-  return JSON.parse(data)
-}
-
-export { prepareButtons, setStatus, getStatus, getUserData }

@@ -1,31 +1,17 @@
 import './styles/global.css'
 import Toast from './components/Toast'
-import { setStatus, getStatus, prepareButtons } from './utils/helpers'
-import { defaltUserData } from './utils/constants'
-
-// localsotrage init
-
-if (localStorage.getItem('NED_USERDATA') === null) {
-  localStorage.setItem('NED_USERDATA', JSON.stringify(defaltUserData))
-}
-
-if (!getStatus()) {
-  setStatus(0) // 0 - default, 1 - in progress
-}
+import { prepareButtons } from './utils/helpers'
 
 Toast.showWelcomeMessage()
-
-// base variables
 
 const { hostname, pathname } = window.location
 const pathnameLength = pathname.split('/').filter((e) => e !== '').length
 
 if (hostname === 'krakenfiles.com') {
-  if (pathnameLength === 3 && getStatus() === 1) {
+  if (pathnameLength === 3) {
     const btn = document.querySelector('#dl-form > button[type="submit"]')
 
     window.addEventListener('blur', () => {
-      setStatus(0)
       window.close()
     })
 
@@ -39,16 +25,15 @@ if (hostname === 'm1.nuteczki.top') {
   if (pathnameLength === 2) {
     prepareButtons()
     new Toast({
-      message: 'Pomyślnie dodano przyciski dla łatwego pobierania',
+      message: 'Dodano przyciski do szybkiego pobierania',
     })
   } else if (pathnameLength === 3) {
-    const href = document.querySelector(
+    const link = document.querySelector(
       'span.download-icon > a[target="_blank"]'
     ).href
+    const encodedLink = new URLSearchParams(link).get('getmp3')
+    const decodedLink = window.atob(encodedLink).split('|')[2]
 
-    if (getStatus() === 1) {
-      window.open(href)
-      setTimeout(() => window.close(), 500)
-    }
+    window.open(decodedLink, '_self')
   }
 }
