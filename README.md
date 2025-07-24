@@ -2,12 +2,9 @@ Jest to projekt rozszerzenia ułatwiającego pobieranie utworów z serwisu [Nute
 
 ## Rozpoczęcie pracy
 
+- Dodanie tymczasowego rozszerzenia do przeglądarki [tutaj](about:debugging#/runtime/this-firefox).
+- Dla przykładu archiwum `nuteczki-easy-download_v0.0.1.zip`
+
+## Wymagania
+
 - Przeglądarka Mozilla Firefox
-- Edycja w edytorze np. Visual Studio Code
-- Budowanie rozszerzenia
-
-```bash
-npm run build
-```
-
-- Dodanie tymczasowego rozszerzenia do przeglądarki, czyli plik `manifest.json`.
