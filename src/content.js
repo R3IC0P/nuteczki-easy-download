@@ -5,22 +5,20 @@ import { getInProgress, prepareButtons, setInProgress } from './utils/helpers'
 const { hostname, pathname } = window.location
 const pathnameLength = pathname.split('/').filter((e) => e !== '').length
 
-if (hostname === 'krakenfiles.com') {
-  if (pathnameLength === 3) {
-    const { success, isInProgress } = await getInProgress()
+if (hostname === 'krakenfiles.com' && pathnameLength === 3) {
+  const { success, isInProgress } = await getInProgress()
 
-    if (success && isInProgress) {
-      const btn = document.querySelector('#dl-form > button[type="submit"]')
+  if (success && isInProgress) {
+    const btn = document.querySelector('#dl-form > button[type="submit"]')
 
-      window.addEventListener('blur', async () => {
-        const { success } = await setInProgress(false)
-        if (success) window.close()
-      })
+    window.addEventListener('blur', async () => {
+      const { success } = await setInProgress(false)
+      if (success) window.close()
+    })
 
-      requestAnimationFrame(() => {
-        btn.click()
-      })
-    }
+    requestAnimationFrame(() => {
+      btn.click()
+    })
   }
 }
 
